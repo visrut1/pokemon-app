@@ -1,0 +1,23 @@
+.Navbar {
+  @apply bg-slate-800 text-white px-10 py-2 flex justify-between align-middle;
+}
+
+.Navbar .Logo {
+  @apply flex justify-center my-auto;
+}
+
+.Input_Form {
+  @apply flex;
+}
+
+.Navbar h1 {
+  @apply tracking-widest text-3xl;
+}
+
+.Input {
+  @apply px-5 py-2 rounded outline-none text-black my-auto;
+}
+
+.Search_Button {
+  @apply bg-blue-500 hover:bg-blue-400 text-white font-bold py-2 px-4 border-b-4 border-blue-700 hover:border-blue-500 rounded;
+}

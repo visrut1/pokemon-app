@@ -1,7 +1,11 @@
+import { useContext } from "react";
 import { Link } from "react-router-dom";
+import SearchContext from "../Context/SearchContext";
 import "./style/Navbar.css";
 
 export const Navbar = () => {
+  const { setSearchTerm } = useContext(SearchContext);
+
   return (
     <>
       <nav className="Navbar">
@@ -14,6 +18,7 @@ export const Navbar = () => {
             placeholder="search"
             className="Input"
             autoFocus={true}
+            onChange={(event) => setSearchTerm(event.target.value)}
           />
           <button type="submit" className="Search_Button">
             Search

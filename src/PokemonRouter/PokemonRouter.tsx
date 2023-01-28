@@ -3,6 +3,7 @@ import { Home } from "../PokemonList/Home";
 import { ErrorPage } from "../Common/ErrorPage";
 import { PokemonDetail } from "../PokemonDetail/PokemonDetail";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
+import SearchComponent from "../Context/SearchComponent";
 
 const router = createBrowserRouter([
   {
@@ -25,7 +26,9 @@ const router = createBrowserRouter([
 export const PokemonRouter = () => {
   return (
     <>
-      <RouterProvider router={router} />
+      <SearchComponent>
+        <RouterProvider router={router} />
+      </SearchComponent>
     </>
   );
 };

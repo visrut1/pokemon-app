@@ -22,7 +22,7 @@ const usePokemonList = () => {
   async function fetchPokemonList() {
     setIsLoading(true);
     try {
-      const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=10");
+      const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=30");
       const data: IPokemonRawData = await res.json();
       setPokemons(
         data.results.map((data) => {

@@ -7,7 +7,7 @@ export const PokemonDetail = () => {
   const [pokemon, setPokemon] = useState<IPokemon>();
 
   const fetchPokemonDetail = async (id: string) => {
-    const response = await fetch(`${BASE_URL}/pokemons/${id}`);
+    const response = await fetch(`${BASE_URL}/pokemons/id/${id}`);
     const data = await response.json();
     setPokemon(data);
     console.log(data.power.name);

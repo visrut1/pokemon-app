@@ -1,10 +1,26 @@
-import { useContext } from "react";
-import { Link } from "react-router-dom";
+import React, { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import SearchContext from "../Context/SearchContext";
 import "./style/Navbar.css";
 
+import { BASE_URL } from "../env";
+
 export const Navbar = () => {
-  const { setSearchTerm } = useContext(SearchContext);
+  const { searchTerm, setSearchTerm } = useContext(SearchContext);
+  const navigate = useNavigate();
+
+  const fetchPokemonByName = async (name: string) => {
+    const response = await fetch(`${BASE_URL}/pokemons/name/${name}`);
+    const data = await response.json();
+    if (response.ok) {
+      navigate(`/pokemon/${data.id}/`);
+    }
+  };
+
+  const searchFormSubmitHandler = (event: React.FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    fetchPokemonByName(searchTerm);
+  };
 
   return (
     <>
@@ -12,7 +28,7 @@ export const Navbar = () => {
         <Link to="/" className="Logo">
           <h1>PokeMon</h1>
         </Link>
-        <form className="Input_Form">
+        <form className="Input_Form" onSubmit={searchFormSubmitHandler}>
           <input
             type="text"
             placeholder="search"

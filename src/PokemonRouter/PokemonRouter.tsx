@@ -4,6 +4,7 @@ import { ErrorPage } from "../Common/ErrorPage";
 import { PokemonDetail } from "../PokemonDetail/PokemonDetail";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import SearchComponent from "../Context/SearchComponent";
+import AddPokemonForm from "../Forms/AddPokemonForm";
 
 const router = createBrowserRouter([
   {
@@ -19,6 +20,10 @@ const router = createBrowserRouter([
         path: "/detail",
         element: <PokemonDetail />,
       },
+      {
+        path: "/add-pokemon",
+        element: <AddPokemonForm />
+      }
     ],
   },
 ]);

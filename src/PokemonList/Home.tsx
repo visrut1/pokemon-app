@@ -12,7 +12,15 @@ export const Home = () => {
   return (
     <>
       {isLoading ?? <h1>Loading...</h1>}
-      {error !== null ?? <span>error</span>}
+      {error && (
+        <div
+          role="alert"
+          className="bg-red-100 border border-red-400 text-red-700 px-4 py-3 rounded relative m-4"
+        >
+          <strong className="font-bold">Error: </strong>
+          <span className="block sm:inline">{error.toString()}</span>
+        </div>
+      )}
       <div className="list">
         {pokemons
           .filter((pokemon) => pokemon.name.includes(searchTerm))

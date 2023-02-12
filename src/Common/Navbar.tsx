@@ -23,6 +23,9 @@ export const Navbar = () => {
           <button type="submit" className="Search_Button">
             Search
           </button>
+          <Link to="/add-pokemon" className="Add_Button mx-2">
+            Add
+          </Link>
         </form>
       </nav>
     </>

@@ -1,18 +1,5 @@
 import { useState, useEffect } from "react";
-
-interface IPokemonResultsData {
-  url: string;
-  name: string;
-}
-
-interface IPokemonRawData {
-  results: IPokemonResultsData[];
-}
-
-function fetchIdFromPokemonUrl(url: string): number {
-  const tokens = url.split("/");
-  return parseInt(tokens[tokens.length - 2]);
-}
+import { BASE_URL } from "../env";
 
 const usePokemonList = () => {
   const [pokemons, setPokemons] = useState<IPokemon[]>([]);
@@ -22,16 +9,14 @@ const usePokemonList = () => {
   async function fetchPokemonList() {
     setIsLoading(true);
     try {
-      const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=30");
-      const data: IPokemonRawData = await res.json();
+      const res = await fetch(`${BASE_URL}/pokemons`);
+      const data: IPokemon[] = await res.json();
       setPokemons(
-        data.results.map((data) => {
+        data.map((data) => {
           return {
-            id: fetchIdFromPokemonUrl(data.url),
+            id: data.id,
             name: data.name,
-            imageUrl: `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${fetchIdFromPokemonUrl(
-              data.url
-            )}.png`,
+            imageUrl: data.imageUrl,
           };
         })
       );

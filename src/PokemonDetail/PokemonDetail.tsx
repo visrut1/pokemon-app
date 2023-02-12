@@ -10,7 +10,6 @@ export const PokemonDetail = () => {
     const response = await fetch(`${BASE_URL}/pokemons/id/${id}`);
     const data = await response.json();
     setPokemon(data);
-    console.log(data.power.name);
   };
 
   useEffect(() => {
@@ -20,10 +19,11 @@ export const PokemonDetail = () => {
   return (
     <>
       {pokemon && (
-        <>
-          <h1>{pokemon.name}</h1>
-          <h1>{pokemon.power.name}</h1>
-        </>
+        <main className="flex flex-col justify-center items-center">
+          <img src={pokemon.imageUrl} alt={pokemon.name} width={500} />
+          <h1 className="text-3xl">{pokemon.name}</h1>
+          <h1 className="text-xl">{pokemon.power.name}</h1>
+        </main>
       )}
     </>
   );

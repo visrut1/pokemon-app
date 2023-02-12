@@ -17,13 +17,13 @@ const router = createBrowserRouter([
         element: <Home />,
       },
       {
-        path: "/detail",
+        path: "/pokemon/:id/",
         element: <PokemonDetail />,
       },
       {
         path: "/add-pokemon",
-        element: <AddPokemonForm />
-      }
+        element: <AddPokemonForm />,
+      },
     ],
   },
 ]);

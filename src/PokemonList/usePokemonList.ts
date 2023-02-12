@@ -17,6 +17,7 @@ const usePokemonList = () => {
             id: data.id,
             name: data.name,
             imageUrl: data.imageUrl,
+            power: data.power,
           };
         })
       );
@@ -32,7 +33,7 @@ const usePokemonList = () => {
     return () => {};
   }, []);
 
-  return { pokemons, isLoading, error };
+  return { pokemons, setPokemons, isLoading, error };
 };
 
 export default usePokemonList;

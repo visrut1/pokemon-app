@@ -4,10 +4,24 @@ import { PokemonCard } from "./PokemonCard";
 import usePokemonList from "./usePokemonList";
 import { useContext } from "react";
 import SearchContext from "../Context/SearchContext";
+import { BASE_URL } from "../env";
 
 export const Home = () => {
-  const { pokemons, isLoading, error } = usePokemonList();
+  const { pokemons, isLoading, error, setPokemons } = usePokemonList();
   const { searchTerm } = useContext(SearchContext);
+
+  const deletePokemonHandler = async (id: number) => {
+    const response = await fetch(`${BASE_URL}/pokemons/${id}`, {
+      method: "DELETE",
+    });
+    if (response.ok) {
+      setPokemons(pokemons.filter((pokemon) => pokemon.id !== id));
+    }
+  };
+
+  const deletePokemon = (id: number) => {
+    deletePokemonHandler(id);
+  };
 
   return (
     <>
@@ -24,8 +38,12 @@ export const Home = () => {
       <div className="list">
         {pokemons
           .filter((pokemon) => pokemon.name.includes(searchTerm))
-          .map((pokemon, index) => (
-            <PokemonCard pokemon={pokemon} key={index} />
+          .map((pokemon) => (
+            <PokemonCard
+              pokemon={pokemon}
+              key={pokemon.id}
+              deletePokemon={deletePokemon}
+            />
           ))}
       </div>
     </>

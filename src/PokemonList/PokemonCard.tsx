@@ -10,7 +10,7 @@ export const PokemonCard = ({ pokemon, deletePokemon }: IPokemonCardProps) => {
   return (
     <div className="card">
       <Link to={`/pokemon/${pokemon.id}/`}>
-        <img src={pokemon.imageUrl} alt="Pokemon" />
+        <img src={pokemon.imageUrl} alt="Pokemon" style={{ width: "200px" }} />
         <p>{pokemon.name}</p>
       </Link>
       <button
